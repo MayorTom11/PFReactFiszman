@@ -1,0 +1,32 @@
+h2{
+    font-size: 3rem;
+    text-align: center;
+}
+.contenedor__productos{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    gap: 10px;
+    .contenedor__producto{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        border: 4px solid #D9BCA9;
+        border-radius: 15px;
+        height: 400px;
+        width: 400px;
+        
+        img{
+            width: 50%;
+            height: 50%;
+        }
+        button{
+            padding: 0 0.6rem;
+            font-size: 1.4rem;
+            border-radius: 10px;
+        }
+    }
+}
+

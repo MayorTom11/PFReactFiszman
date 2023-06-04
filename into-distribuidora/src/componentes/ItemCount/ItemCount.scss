@@ -1,0 +1,16 @@
+.item__count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .handle{
+        padding: 0 0.6rem;
+        font-size: 1.4rem;
+        margin: 0.5rem;
+        border-radius: 10px;
+    }
+    .comprar{
+        padding: 0 0.6rem;
+        font-size: 1.4rem;
+        border-radius: 10px;
+    }
+}
