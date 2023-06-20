@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { pedirCatalogo } from "../helpers/pedirCatalogo"
 import { useParams } from "react-router-dom"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from "../firebase/config"
 
 export const useCatalogo = () => {
 
@@ -11,15 +12,21 @@ export const useCatalogo = () => {
 
     useEffect(() => {
         setLoading(true)
-        pedirCatalogo()
-            .then((data) => {
-                if(!categoriaId){
-                    setProductos(data)
-                }else{
-                    setProductos(data.filter((el) => el.categoria === categoriaId))
-                }
+        const productosRef = (collection(db, "productos"))
+        const _query = categoriaId
+                            ? query(productosRef, where("categoria", "==", categoriaId))
+                            : productosRef
+        getDocs(_query)
+            .then((res) => {
+                const docs = res.docs.map((doc) => {
+                    return {
+                        ...doc.data(),
+                        id: doc.id
+                    }
+                })
+                setProductos(docs)
             })
-            .catch((err) => console.log(err))
+            .catch(e => console.log(e))
             .finally(() => setLoading(false))
     },[categoriaId])
 
